@@ -9,22 +9,24 @@ def main():
     print("Output: ", newnum)
 
 
-def next_biggest_number(numstr):
-    n = list(str(numstr))
-    print("sorted: ", sorted(n, reverse=True))
-    if n == sorted(n, reverse=True):
+def next_biggest_number(numin):
+    num = list(str(numin))
+    #check to see if its possible to get a bigger number
+    descending = int("".join(sorted(str(numin), reverse=True)))
+    if descending <= int(numin):
         return -1
+    #if it is possible to get bigger number
     else:
-        for i in range(len(n) - 1, -1, -1):
-            if (n[i - 1] < n[i]):
-                n[i:len(n)] = sorted(n[i:len(n)])
+        for i in range(len(num) - 1, -1, -1):
+            if (num[i - 1] < num[i]):
+                num[i:len(num)] = sorted(num[i:len(num)])
                 break
-        for j in range(i, len(n)):
-            if (n[i - 1] < n[j]):
-                n[i - 1], n[j] = n[j], n[i - 1]
+        for j in range(i, len(num)):
+            if (num[i - 1] < num[j]):
+                num[i - 1], num[j] = num[j], num[i - 1]
                 break
-        return(int("".join(n)))
-
+        #print("returning: ", int("".join(num)))
+        return(int("".join(num)))
 
 
 if __name__ == "__main__":
