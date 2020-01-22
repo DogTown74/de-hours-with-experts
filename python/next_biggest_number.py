@@ -3,21 +3,29 @@
 import sys
 
 def main():
-    #get the nbr passed
-    num = sys.argv[1]
-    print("Input: ", num)
     #call function to get biggest nbr
-    newnum = next_biggest_number(num)
-    if newnum > int(num):
-        print("Output: ", newnum)
+    newnum = next_biggest_number(sys.argv[1])
+    print("Input: ", sys.argv[1])
+    print("Output: ", newnum)
+
+
+def next_biggest_number(numstr):
+    n = list(str(numstr))
+    print("sorted: ", sorted(n, reverse=True))
+    if n == sorted(n, reverse=True):
+        return -1
     else:
-        print("Output: ", -1)
+        for i in range(len(n) - 1, -1, -1):
+            if (n[i - 1] < n[i]):
+                n[i:len(n)] = sorted(n[i:len(n)])
+                break
+        for j in range(i, len(n)):
+            if (n[i - 1] < n[j]):
+                n[i - 1], n[j] = n[j], n[i - 1]
+                break
+        return(int("".join(n)))
 
 
-def next_biggest_number(num):
-    #reorder the nbr
-    descending = int("".join(sorted(str(num), reverse=True)))
-    return descending
 
 if __name__ == "__main__":
     main()
