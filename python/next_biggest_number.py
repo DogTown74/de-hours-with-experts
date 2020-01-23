@@ -1,4 +1,4 @@
-#Nathan Liston 1-23-2020
+
 #!/usr/bin/python3
 import sys
 
